@@ -1,0 +1,36 @@
+# Allowlist minimal build context
+*
+
+# Backend
+!requirements.txt
+!app.py
+!routes/**
+# Re-ignore caches and compiled files inside routes
+routes/**/__pycache__/
+routes/**/.pytest_cache/
+routes/**/*.pyc
+routes/**/*.pyo
+
+# Frontend: only what's needed to build
+!spotizerr-ui/package.json
+!spotizerr-ui/pnpm-lock.yaml
+!spotizerr-ui/pnpm-workspace.yaml
+!spotizerr-ui/index.html
+!spotizerr-ui/vite.config.ts
+!spotizerr-ui/postcss.config.mjs
+!spotizerr-ui/tsconfig.json
+!spotizerr-ui/tsconfig.app.json
+!spotizerr-ui/tsconfig.node.json
+!spotizerr-ui/src/**
+!spotizerr-ui/public/**
+!spotizerr-ui/scripts/**
+# Exclude heavy/unnecessary frontend folders
+spotizerr-ui/node_modules/**
+spotizerr-ui/dist/**
+spotizerr-ui/dev-dist/**
+
+# Always exclude local data/logs/tests/etc.
+.data/
+logs/
+Downloads/
+tests/
