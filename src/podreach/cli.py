@@ -142,16 +142,24 @@ def run(
 
     display_transcript_preview(transcript)
 
-    # Step 5: Draft email with Claude
+    # Step 5: Analyze transcript + Draft email with Claude
+    from podreach.draft import analyze_transcript, draft_email
+
+    episode_meta = storage.load_episode_metadata(episode_dir)
+
+    console.print("Analyzing transcript for insights...")
+    insights = analyze_transcript(
+        settings.anthropic_api_key, transcript, name, episode_meta,
+    )
+    console.print(Panel(insights.formatted(), title="Transcript Insights", border_style="yellow"))
+
     if template is None:
         template = pick_template()
 
     if not context:
         context = Prompt.ask("Context about yourself? (optional, Enter to skip)", default="")
 
-    from podreach.draft import draft_email
     console.print("Drafting email...")
-    episode_meta = storage.load_episode_metadata(episode_dir)
     email = draft_email(
         settings.anthropic_api_key, transcript, episode_meta,
         name, template, context,
