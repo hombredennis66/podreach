@@ -36,7 +36,7 @@ def display_episodes(scored_episodes: list[ScoredEpisode]) -> None:
             ep.release_date, duration, style=style,
         )
 
-    console.print(table)
+    console.print(table)v
 
 
 def display_transcript_preview(transcript: Transcript, max_lines: int = 8) -> None:
